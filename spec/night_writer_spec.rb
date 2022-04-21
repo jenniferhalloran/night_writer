@@ -8,4 +8,11 @@ RSpec.describe NightWriter do
     expect(nightwriter).to be_a(NightWriter)
   end
 
+
+  it "can read the message written in the given file" do
+
+    expect(nightwriter.read_message).to be_a(String)
+    expect(nightwriter.read_message).to eq("a\n")
+  end
+
 end

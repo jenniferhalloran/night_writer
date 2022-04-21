@@ -8,4 +8,17 @@ class NightWriter
     ##may be good to have other default files if something is not entered.
   end
 
+
+  # # this program takes the filepath with a message, opens the desired file path reads the message
+  # # and prints the messsage in that file to the terminal.
+  # def print_message
+  #   message = File.open(@existing_file).read
+  #   puts message
+  # end
+  # # it works! now break it up to read the file, then print it new a new file(the second argument passed in on the terminal)
+  ## Read the file
+
+  def read_message
+    File.open(@existing_file).read
+  end
 end
