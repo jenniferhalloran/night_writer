@@ -15,4 +15,9 @@ RSpec.describe NightWriter do
     expect(nightwriter.read_message).to eq("a\n")
   end
 
+  it "can write the message to a new file" do
+    ##ooh...I have no idea how to test this.
+    expect(nightwriter.write_message_to_file).to eq(nil)
+  end
+
 end

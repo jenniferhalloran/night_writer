@@ -21,4 +21,15 @@ class NightWriter
   def read_message
     File.open(@existing_file).read
   end
+
+  def write_message_to_file
+    message = read_message
+    # require "pry"; binding.pry
+    File.open(@new_file, "w") do |file|
+      file.write(message)
+    end
+    puts "Created '#{@new_file}' containing #{message.size} characters"
+  end
 end
+
+NightWriter.new.write_message_to_file
