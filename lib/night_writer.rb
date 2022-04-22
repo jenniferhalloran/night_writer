@@ -12,15 +12,16 @@ class NightWriter
   end
 
   def read_message
-    File.open(@existing_file).read
+    File.open(@existing_file).read.chomp
   end
 
   def transform_message
+    # require "pry"; binding.pry
     read_message.chars.map { |letter| converter(letter.downcase) }.join("")
   end
 
   def converter(letter)
-    letter = @dictionary.letters[letter]
+    letter = @dictionary.translations[letter]
     letter
   end
 
@@ -29,7 +30,8 @@ class NightWriter
     File.open(@new_file, "w") do |file|
       file.write(message)
     end
-    puts "Created '#{@new_file}' containing #{message.size} characters"
+    puts "Created '#{@new_file}' containing #{read_message.size} characters"
+    # require "pry"; binding.pry
     ##need to divide message size by 6??
   end
 

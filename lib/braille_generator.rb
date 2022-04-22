@@ -1,3 +1,5 @@
+
+
 class BrailleGenerator
   attr_reader :top,
               :middle,
@@ -11,8 +13,8 @@ class BrailleGenerator
   end
 
 
-  def generate_braille_letter
-    
+  def format_braille_letter
+
   end
 
 
