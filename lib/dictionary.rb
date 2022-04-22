@@ -5,8 +5,9 @@ class Dictionary
     @letters = {
       "a" => "O.\n..\n..",
       "b" => "O.\nO.\n..",
-      "c" => "00\n..\n..",
-      "d" => "00\n.0\n.."
+      "c" => "OO\n..\n..",
+      "d" => "OO\n.O\n..",
+      "e" => "O.\n.O\n.."
     }
   end
 end
