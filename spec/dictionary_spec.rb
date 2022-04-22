@@ -14,6 +14,6 @@ RSpec.describe Dictionary do
 
   it "can translate the given letter" do
     expect(dictionary.letters["a"]).to eq("O.\n..\n..")
-    expect(dictionary.letters["d"]).to eq("00\n.0\n..")
+    expect(dictionary.letters["d"]).to eq("OO\n.O\n..")
   end
 end
