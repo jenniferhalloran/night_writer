@@ -26,4 +26,6 @@ RSpec.describe NightWriter do
     expect(nightwriter.transform_message).to eq("O.\n..\n..O.\nO.\n..OO\n..\n..")
   end
 
+  
+
 end

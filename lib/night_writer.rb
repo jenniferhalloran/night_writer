@@ -15,16 +15,6 @@ class NightWriter
     File.open(@existing_file).read
   end
 
-  def write_message_to_file
-    message = transform_message
-    File.open(@new_file, "w") do |file|
-      file.write(message)
-    end
-     puts "Created '#{@new_file}' containing #{message.size} characters"
-     ##need to divide message size by 6??
-  end
-
-
   def transform_message
     read_message.chars.map { |letter| converter(letter.downcase) }.join("")
   end
@@ -32,6 +22,15 @@ class NightWriter
   def converter(letter)
     letter = @dictionary.letters[letter]
     letter
+  end
+
+  def write_message_to_file
+    message = transform_message
+    File.open(@new_file, "w") do |file|
+      file.write(message)
+    end
+    puts "Created '#{@new_file}' containing #{message.size} characters"
+    ##need to divide message size by 6??
   end
 
 end
