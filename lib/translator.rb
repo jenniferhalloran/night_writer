@@ -53,31 +53,21 @@ class Translator
       end
   end
 
+  # def format_braille(unformatted_braille)
+  #   unformatted_braille.transpose
   #
-  # def english_to_braille(english_string)
-  #   breakdown_message(english_string).map do |letter|
-  #     letter = @dictionary.translations[letter]
-  #   end
-  #   #1. break it down into characters
-  #   #2. convert english letters to braille
-  #   #3. format the braille
-  #   # Look up .transpose
-  # end
+  # #   #3. format the braille
+  # #   # Look up .transpose
+  # # end
 
-
-  # def translate
-  #   breakdown_message.map do |letter|
-  #     letter = @dictionary.translations[letter]
-  #   end
-  # end
-  #
-  # def format_braille_letters
-  #   translate.each do |braille_letter|
-  #     @top << braille_letter[0]
-  #     @middle << braille_letter[1]
-  #     @bottom << braille_letter[2]
-  #   end
-  # end
+  def format_braille_letters(unformatted_braille)
+    unformatted_braille.each do |braille_letter|
+      @top << braille_letter[0]
+      @middle << braille_letter[1]
+      @bottom << braille_letter[2]
+    end
+    p " #{@top.join} \n #{@middle.join} \n #{@bottom.join}"
+  end
 
 
 end

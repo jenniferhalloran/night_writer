@@ -30,13 +30,10 @@ RSpec.describe Translator do
 
     expect(translator.translate_string_breakdown(["h", "e", "l", "l", "o"])).to eq([["O.", "OO", ".."], ["O.", ".O", ".."], ["O.", "O.", "O."], ["O.", "O.", "O."], ["O.", ".O", "O."]])
   end
-  #
-  # it "can format braille into 3 rows on top of one another" do
-  #   braille_generator.format_braille_letters(["O.", "..", ".."])
-  #   expect(braille_generator.top).to eq(["O."])
-  #   expect(braille_generator.middle).to eq([".."])
-  #   expect(braille_generator.bottom).to eq([".."])
-  # end
 
+  it "can format braille letters in three rows of two characters" do
+
+    expect(translator.format_braille_letters([["O.", "OO", ".."], ["O.", ".O", ".."], ["O.", "O.", "O."], ["O.", "O.", "O."], ["O.", ".O", "O."]])).to eq(" O.O.O.O.O. \n OO.OO.O..O \n ....O.O.O.")
+  end
 
 end
