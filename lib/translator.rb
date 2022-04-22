@@ -39,6 +39,21 @@ class Translator
     @bottom = []
   end
 
+  def breakdown_message(english_string)
+    string_breakdown = english_string.chomp.chars
+  end
+
+  def translate_english_letter(english_letter)
+    @letter_to_braille[english_letter]
+  end
+
+
+  # def translate_each_letter(string_breakdown)
+  #     string_breakdown.map { |english_letter| braille_letter = @letter_to_braille.lookup(english_letter)}
+  # end
+
+
+
   #
   # def english_to_braille(english_string)
   #   breakdown_message(english_string).map do |letter|
@@ -50,16 +65,13 @@ class Translator
   #   # Look up .transpose
   # end
 
-  def breakdown_message(english_string)
-    english_string.chomp.chars
-  end
 
   # def translate
   #   breakdown_message.map do |letter|
   #     letter = @dictionary.translations[letter]
   #   end
   # end
-  # 
+  #
   # def format_braille_letters
   #   translate.each do |braille_letter|
   #     @top << braille_letter[0]
