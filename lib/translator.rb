@@ -47,12 +47,11 @@ class Translator
     @letter_to_braille[english_letter]
   end
 
-
-  # def translate_each_letter(string_breakdown)
-  #     string_breakdown.map { |english_letter| braille_letter = @letter_to_braille.lookup(english_letter)}
-  # end
-
-
+  def translate_string_breakdown(string_breakdown)
+      string_breakdown.map do |english_letter|
+        translate_english_letter(english_letter)
+      end
+  end
 
   #
   # def english_to_braille(english_string)

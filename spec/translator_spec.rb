@@ -26,10 +26,10 @@ RSpec.describe Translator do
 
   end
 
-  # it "can translate each letter in the broken up string to unformatted braille" do
-  #
-  #   expect(translator.translate_each_letter(["h", "e", "l", "l", "o"])).to eq([["O.", "OO", ".."]])
-  # end
+  it "can translate the broken up english string to unformatted braille" do
+
+    expect(translator.translate_string_breakdown(["h", "e", "l", "l", "o"])).to eq([["O.", "OO", ".."], ["O.", ".O", ".."], ["O.", "O.", "O."], ["O.", "O.", "O."], ["O.", ".O", "O."]])
+  end
   #
   # it "can format braille into 3 rows on top of one another" do
   #   braille_generator.format_braille_letters(["O.", "..", ".."])
