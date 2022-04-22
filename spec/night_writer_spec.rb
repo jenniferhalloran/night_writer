@@ -17,15 +17,13 @@ RSpec.describe NightWriter do
   end
 
   xit "can write the message to a new file" do
-    ##how do I test this?
-    expect(nightwriter.write_message_to_file).to eq("Created 'braille.txt' containing 24 characters")
+    ##how do I test this? can I check the contents of braille.txt ?
+    expect(nightwriter.write_message_to_file).to eq("Created 'braille.txt' containing 3 characters")
   end
 
-  it "can convert the message to an unformated string of braille characters" do
-    expect(nightwriter.transform_message).to be_a(String)
-    expect(nightwriter.transform_message).to eq("O.....O.O...OO....")
+  it "can convert the message to an unformated array of braille characters" do
+    expect(nightwriter.breakdown_message).to be_a(Array)
+    expect(nightwriter.breakdown_message).to eq([["O.", "..", ".."], ["O.", "O.", ".."], ["OO", "..", ".."]])
   end
-
-
 
 end

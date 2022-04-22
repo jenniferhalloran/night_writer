@@ -33,7 +33,7 @@ class Dictionary
   end
 end
 
-
-# {"a" => {top: "O.", 
+# might make this just strings so it can be converted back from braille to english
+# {"a" => {top: "O.",
 #          mid: "..",
 #          bot: ".." }}

@@ -5,8 +5,10 @@ class NightWriter
               :new_file
 
   def initialize()
-    @existing_file = "message.txt"#ARGV[0]
-    @new_file = "braille.txt" #ARGV[1]
+    @existing_file = "message.txt"
+    # @existing_file = ARGV[0]
+    @new_file = "braille.txt"
+    # @new_file = ARGV[1]
     ##may be good to have other default files if something is not entered.
     @dictionary = Dictionary.new
   end
@@ -15,26 +17,32 @@ class NightWriter
     File.open(@existing_file).read.chomp
   end
 
-  def transform_message
-    # require "pry"; binding.pry
-    read_message.chars.map { |letter| converter(letter.downcase) }.join("")
+  def breakdown_message
+    read_message.chars.map { |letter| converter(letter.downcase) }
   end
 
   def converter(letter)
-    letter = @dictionary.translations[letter]
-    letter
+    braille_letter = @dictionary.translations[letter]
+    braille_letter
   end
 
   def write_message_to_file
-    message = transform_message
+    message = breakdown_message
     File.open(@new_file, "w") do |file|
       file.write(message)
     end
+    ##need to close files?
     puts "Created '#{@new_file}' containing #{read_message.size} characters"
-    # require "pry"; binding.pry
-    ##need to divide message size by 6??
   end
 
 end
 
 NightWriter.new.write_message_to_file
+
+
+## read message
+## break it down into characters
+## check the dictionary for each english character and set that english character equal to the 3 corresponding braille arrays in the dictionary
+## shovel braille_letter[0] into top, braille_letter[1] into middle, braille_letter[2] into bottom of braille BrailleGenerator
+##format braille generator print out
+##### flatten/join
