@@ -1,10 +1,10 @@
 require './spec/spec_helper'
 
-RSpec.describe BrailleGenerator do
-  let(:braille_generator) {BrailleGenerator.new}
+RSpec.describe Translator do
+  let(:translator) {Translator.new}
 
   it "exists" do
-    expect(braille_generator).to be_a(BrailleGenerator)
+    expect(braille_generator).to be_a(Translator)
   end
 
   it "has readable attributes" do

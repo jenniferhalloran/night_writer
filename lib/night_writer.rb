@@ -1,43 +1,26 @@
 require './lib/dictionary'
 
 class NightWriter
-  attr_reader :existing_file,
-              :new_file
+  attr_reader :read_file,
+              :write_file
 
   def initialize()
-    @existing_file = "message.txt"
-    # @existing_file = ARGV[0]
-    @new_file = "braille.txt"
-    # @new_file = ARGV[1]
+    @read_file = ARGV[0]
+    @write_file = ARGV[1]
     ##may be good to have other default files if something is not entered.
-    @dictionary = Dictionary.new
+    @translator = Translator.new
   end
 
-  def read_message
-    File.open(@existing_file).read.chomp
-  end
-
-  def breakdown_message
-    read_message.chars.map { |letter| converter(letter.downcase) }
-  end
-
-  def converter(letter)
-    braille_letter = @dictionary.translations[letter]
-    braille_letter
-  end
-
-  def write_message_to_file
-    message = breakdown_message
-    File.open(@new_file, "w") do |file|
-      file.write(message)
-    end
-    ##need to close files?
-    puts "Created '#{@new_file}' containing #{read_message.size} characters"
+  def read_and_write_to_file(read_file = @read_file, write_file = @write_file)
+    engish_string = File.read(file)
+    braille_message = translator.english_to_braille(engish_string)
+    File.write(write_file, braille_message)
+    puts "Created '#{@new_file}' containing #{braille_message.size} characters"
   end
 
 end
 
-NightWriter.new.write_message_to_file
+NightWriter.new.read_and_write_to_file
 
 
 ## read message
