@@ -31,23 +31,24 @@ class Translator
       "w" => [".O", "OO", ".O"],
       "x" => ["OO", "..", "OO"],
       "y" => ["OO", ".O", "OO"],
-      "z" => ["O.", ".O", "OO"]
+      "z" => ["O.", ".O", "OO"],
+      " " => ["..", "..", ".."]
     }
     @top = []
     @middle = []
     @bottom = []
   end
 
-
-  def english_to_braille(english_string)
-    breakdown_message(english_string).map do |letter|
-      letter = @dictionary.translations[letter]
-    end
-    #1. break it down into characters
-    #2. convert english letters to braille
-    #3. format the braille
-    # Look up .transpose 
-  end
+  #
+  # def english_to_braille(english_string)
+  #   breakdown_message(english_string).map do |letter|
+  #     letter = @dictionary.translations[letter]
+  #   end
+  #   #1. break it down into characters
+  #   #2. convert english letters to braille
+  #   #3. format the braille
+  #   # Look up .transpose
+  # end
 
   def breakdown_message(english_string)
     english_string.chomp.chars
@@ -58,14 +59,14 @@ class Translator
   #     letter = @dictionary.translations[letter]
   #   end
   # end
-
-  def format_braille_letters
-    translate.each do |braille_letter|
-      @top << braille_letter[0]
-      @middle << braille_letter[1]
-      @bottom << braille_letter[2]
-    end
-  end
+  # 
+  # def format_braille_letters
+  #   translate.each do |braille_letter|
+  #     @top << braille_letter[0]
+  #     @middle << braille_letter[1]
+  #     @bottom << braille_letter[2]
+  #   end
+  # end
 
 
 end

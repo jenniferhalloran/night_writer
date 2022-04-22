@@ -1,4 +1,4 @@
-require './lib/dictionary'
+require './lib/translator'
 
 class NightWriter
   attr_reader :read_file,
@@ -12,8 +12,8 @@ class NightWriter
   end
 
   def read_and_write_to_file(read_file = @read_file, write_file = @write_file)
-    engish_string = File.read(file)
-    braille_message = translator.english_to_braille(engish_string)
+    english_string = File.read(read_file)
+    braille_message = translator.english_to_braille(english_string)
     File.write(write_file, braille_message)
     puts "Created '#{@new_file}' containing #{braille_message.size} characters"
   end
