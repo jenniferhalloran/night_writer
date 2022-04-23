@@ -1,39 +1,31 @@
-require './lib/dictionary'
+require './lib/translator'
 
 class NightWriter
-  attr_reader :existing_file,
-              :new_file
+  attr_accessor :read_file,
+              :write_file
 
-  def initialize()
-    @existing_file = "message.txt"#ARGV[0]
-    @new_file = "braille.txt" #ARGV[1]
-    ##may be good to have other default files if something is not entered.
-    @dictionary = Dictionary.new
+  def initialize
+    @read_file = ARGV[0]
+    @write_file = ARGV[1]
+    @translator = Translator.new
   end
 
-  def read_message
-    File.open(@existing_file).read
-  end
-
-  def write_message_to_file
-    message = transform_message
-    File.open(@new_file, "w") do |file|
-      file.write(message)
-    end
-     puts "Created '#{@new_file}' containing #{message.size} characters"
-     ##need to divide message size by 6??
-  end
-
-
-  def transform_message
-    read_message.chars.map { |letter| converter(letter.downcase) }.join("")
-  end
-
-  def converter(letter)
-    letter = @dictionary.letters[letter]
-    letter
+  def read_and_write_to_file(read_file_name = read_file, write_file_name = write_file)
+    english_string = File.read(read_file_name)
+    braille_message = @translator.english_to_braille(english_string)
+    File.write(write_file_name, braille_message)
+    puts "Created '#{write_file_name}' containing #{braille_message.size} characters"
   end
 
 end
 
-NightWriter.new.write_message_to_file
+night_writer = NightWriter.new
+
+night_writer.read_file = './message.txt' if night_writer.read_file == "spec/night_writer_spec.rb" || night_writer.read_file.nil?
+##create a file and write a default message
+night_writer.write_file = './braille.txt' if night_writer.write_file.nil?
+
+night_writer.read_and_write_to_file
+
+
+##dependencey injection
