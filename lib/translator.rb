@@ -1,8 +1,8 @@
 class Translator
-  attr_reader :letter_to_braille
+  attr_reader :braille_equivalent
 
   def initialize
-    @letter_to_braille = {
+    @braille_equivalent = {
       "a" => ["O.", "..", ".."],
       "b" => ["O.", "O.", ".."],
       "c" => ["OO", "..", ".."],
@@ -39,9 +39,8 @@ class Translator
   end
 
   def translate_string_breakdown(english_string)
-    breakdown_message(english_string).map do |english_letter|
-      translate_english_letter(english_letter)
-    end
+    message_characters = breakdown_message(english_string)
+    message_characters.map { |english_letter| translate_english_letter(english_letter) }
   end
 
   def breakdown_message(english_string)
@@ -49,7 +48,7 @@ class Translator
   end
 
   def translate_english_letter(english_letter)
-    @letter_to_braille[english_letter]
+    @braille_equivalent[english_letter]
   end
 
   def format_braille_letters(unformatted_braille)
