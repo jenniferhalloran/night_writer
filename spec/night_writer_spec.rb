@@ -8,7 +8,7 @@ RSpec.describe NightWriter do
   end
 
   it "can write the message to a new file" do
-    expect(File.read("./braille.txt")).to eq("O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.")
+    expect(File.read("./braille.txt")).to eq("O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.\n")
   end
 
 end

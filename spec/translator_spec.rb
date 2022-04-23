@@ -16,8 +16,8 @@ RSpec.describe Translator do
   end
 
   it "can translate an individual character" do
-    expect(translator.translate_english_letter("h")).to eq(["O.", "OO", ".."])
-    expect(translator.translate_english_letter(" ")).to eq(["..", "..", ".."])
+    expect(translator.translate_to_braille("h")).to eq(["O.", "OO", ".."])
+    expect(translator.translate_to_braille(" ")).to eq(["..", "..", ".."])
 
   end
   it "can translate the broken up english string to unformatted braille" do
@@ -25,7 +25,18 @@ RSpec.describe Translator do
   end
 
   it "can format braille letters in three rows of two characters" do
-    expect(translator.format_braille_letters([["O.", "OO", ".."], ["O.", ".O", ".."], ["O.", "O.", "O."], ["O.", "O.", "O."], ["O.", ".O", "O."]])).to eq("O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.")
+    expect(translator.format_braille_letters([["O.", "OO", ".."], ["O.", ".O", ".."], ["O.", "O.", "O."], ["O.", "O.", "O."], ["O.", ".O", "O."]])).to eq("O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.\n")
+  end
+
+  it "can split messages over 40 braille characters onto multiple lines" do
+    braille_letters = translator.translate_string_breakdown("hello this is going to be just long enough")
+    printable_braille = translator.format_braille_letters(braille_letters)
+    expect(printable_braille).to eq("O.O.O.O.O....OO..O.O...O.O..OOO..OOOOO...OO...O.O....OO..O.O..O.O.OOOO..O.OOO.O.\n" +
+                                     "OO.OO.O..O..OOOOO.O...O.O...OO.OO..OOO..OO.O..O..O..OO..O.OO..O..O.OOO...O.O.O..\n" +
+                                     "....O.O.O...O.....O.....O.....O...O.....O.O...........OOO.O...O.O.O.......O.O.OO\n" +
+                                     "OOO.\n" +
+                                     "OOOO\n" +
+                                     "....\n")
   end
 
 end
