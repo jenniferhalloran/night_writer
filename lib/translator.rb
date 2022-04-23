@@ -1,8 +1,5 @@
 class Translator
-  attr_reader :top,
-              :middle,
-              :bottom,
-              :letter_to_braille
+  attr_reader :letter_to_braille
 
   def initialize
     @letter_to_braille = {
@@ -34,39 +31,29 @@ class Translator
       "z" => ["O.", ".O", "OO"],
       " " => ["..", "..", ".."]
     }
-    @top = []
-    @middle = []
-    @bottom = []
+  end
+
+  def english_to_braille(english_string)
+    unformatted_braille = translate_string_breakdown(english_string)
+    format_braille_letters(unformatted_braille)
+  end
+
+  def translate_string_breakdown(english_string)
+    breakdown_message(english_string).map do |english_letter|
+      translate_english_letter(english_letter)
+    end
   end
 
   def breakdown_message(english_string)
-    string_breakdown = english_string.chomp.chars
+    english_string.chomp.chars
   end
 
   def translate_english_letter(english_letter)
     @letter_to_braille[english_letter]
   end
 
-  def translate_string_breakdown(string_breakdown)
-      string_breakdown.map do |english_letter|
-        translate_english_letter(english_letter)
-      end
-  end
-
-  # def format_braille(unformatted_braille)
-  #   unformatted_braille.transpose
-  #
-  # #   #3. format the braille
-  # #   # Look up .transpose
-  # # end
-
   def format_braille_letters(unformatted_braille)
-    unformatted_braille.each do |braille_letter|
-      @top << braille_letter[0]
-      @middle << braille_letter[1]
-      @bottom << braille_letter[2]
-    end
-    p " #{@top.join} \n #{@middle.join} \n #{@bottom.join}"
+    unformatted_braille.transpose.map { |braille_line| braille_line.join}.join("\n")
   end
 
 
