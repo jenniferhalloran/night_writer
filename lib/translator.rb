@@ -1,8 +1,8 @@
 class Translator
-  attr_reader :letter_to_braille
+  attr_reader :braille_equivalent
 
   def initialize
-    @letter_to_braille = {
+    @braille_equivalent = {
       "a" => ["O.", "..", ".."],
       "b" => ["O.", "O.", ".."],
       "c" => ["OO", "..", ".."],
@@ -31,29 +31,42 @@ class Translator
       "z" => ["O.", ".O", "OO"],
       " " => ["..", "..", ".."]
     }
+    @braille_string = []
   end
 
   def english_to_braille(english_string)
-    unformatted_braille = translate_string_breakdown(english_string)
-    format_braille_letters(unformatted_braille)
+    braille_letters = translate_string_breakdown(english_string)
+    format_braille_letters(braille_letters)
   end
 
   def translate_string_breakdown(english_string)
-    breakdown_message(english_string).map do |english_letter|
-      translate_english_letter(english_letter)
-    end
+    message_characters = breakdown_message(english_string)
+    message_characters.map { |english_letter| translate_to_braille(english_letter) }
   end
 
   def breakdown_message(english_string)
     english_string.chomp.chars
   end
 
-  def translate_english_letter(english_letter)
-    @letter_to_braille[english_letter]
+  def translate_to_braille(english_letter)
+    @braille_equivalent[english_letter]
   end
 
-  def format_braille_letters(unformatted_braille)
-    unformatted_braille.transpose.map { |braille_line| braille_line.join}.join("\n")
+  def format_braille_letters(braille_letters)
+    braille_lines = braille_letters.transpose
+    create_line_breaks(braille_lines)
+    @braille_string.flatten.join
+  end
+
+  def create_line_breaks(braille_lines)
+    index = 0
+    (braille_lines[0].count.to_f / 40).ceil.times do
+      braille_lines.each do |line|
+        @braille_string << line[index..(index + 39)]
+        @braille_string << "\n"
+      end
+      index += 40
+    end
   end
 
 
