@@ -21,7 +21,7 @@ end
 
 night_reader = NightReader.new
 
-night_reader.read_file = './braille.txt' if night_reader.read_file == "lib/night_reader.rb" || "spec/night_reader_spec.rb" || night_reader.read_file.nil?
+night_reader.read_file = './braille.txt' if night_reader.read_file == ("lib/night_reader.rb" || "spec/night_reader_spec.rb" || night_reader.read_file.nil?)
 night_reader.write_file = './original_message.txt' if night_reader.write_file.nil?
 
 night_reader.read_and_write_to_file
