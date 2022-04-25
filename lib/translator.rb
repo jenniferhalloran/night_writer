@@ -74,6 +74,7 @@ class Translator
   def braille_to_english(braille_message)
     braille_letters = format_braille_for_translation(braille_message)
     english_array = translate_braille_letters(braille_letters)
+    english_array.join
   end
 
   def translate_braille_string(braille_letters)

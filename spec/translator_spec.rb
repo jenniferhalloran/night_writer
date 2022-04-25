@@ -74,4 +74,10 @@ RSpec.describe Translator do
     expect(translator.translate_braille_letters(braille_letters)).to eq([["h", "e", "l", "l", "o"]])
   end
 
+  it "can create a printable english message from braille" do
+    unformatted_braille = "O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.\n"
+
+    expect(translator.braille_to_english(unformatted_braille)).to eq("hello")
+  end
+
 end
