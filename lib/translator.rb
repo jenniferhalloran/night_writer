@@ -71,6 +71,13 @@ class Translator
   end
 
 ## BRAILLE TO ENGLISH
+def braille_to_english(braille_message)
+  braille_letters = format_braille_for_translation(braille_message)
+end
 
+def format_braille_for_translation(braille_message)
+  braille_arrays = braille_message.split("\n").map {|line| line.scan(/../)}.each_slice(3)
+  braille_arrays.map{|array| array.transpose}
+end
 
 end

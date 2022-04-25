@@ -54,5 +54,15 @@ RSpec.describe Translator do
                                      "....\n")
   end
 
+  it "can format a braille message for translation" do
+    unformatted_braille = "O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.\n"
+    expected_braille_letters =[[["O.", "OO", ".."],
+                                ["O.", ".O", ".."],
+                                ["O.", "O.", "O."],
+                                ["O.", "O.", "O."],
+                                ["O.", ".O", "O."]]]
+
+    expect(translator.format_braille_for_translation(unformatted_braille)).to eq(expected_braille_letters)
+  end
 
 end
