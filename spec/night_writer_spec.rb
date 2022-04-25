@@ -1,4 +1,4 @@
-require './spec/spec_helper'
+require './lib/night_writer'
 
 RSpec.describe NightWriter do
   let(:nightwriter) {NightWriter.new}
