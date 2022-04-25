@@ -8,7 +8,7 @@ RSpec.describe NightReader do
   end
 
   it "can write the message to a new file" do
-    expect(File.read("./original_message.txt")).to eq("O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.\n")
+    expect(File.read("./original_message.txt")).to eq("hello")
   end
 
 end

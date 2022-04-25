@@ -10,10 +10,10 @@ class NightReader
     @translator = Translator.new
   end
 
-  def read_and_write_to_file(read_file_name = read_file, write_file_name = write_file)
+  def read_and_write_to_file(read_file_name = @read_file, write_file_name = @write_file)
     braille_string = File.read(read_file_name)
-    # braille_message = @translator.english_to_braille(english_string)
-    File.write(write_file_name, braille_string)
+    english_message = @translator.braille_to_english(braille_string)
+    File.write(write_file_name, english_message)
     puts "Created '#{write_file_name}' containing #{braille_string.size} characters"
   end
 
@@ -21,8 +21,7 @@ end
 
 night_reader = NightReader.new
 
-night_reader.read_file = './braille.txt' if night_reader.read_file == "spec/night_reader_spec.rb" || night_reader.read_file.nil?
-##create a file and write a default message
+night_reader.read_file = './braille.txt' if night_reader.read_file == "lib/night_reader.rb" || "spec/night_reader_spec.rb" || night_reader.read_file.nil?
 night_reader.write_file = './original_message.txt' if night_reader.write_file.nil?
 
 night_reader.read_and_write_to_file

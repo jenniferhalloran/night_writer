@@ -1,4 +1,4 @@
-require './spec/spec_helper'
+require './lib/translator.rb'
 
 RSpec.describe Translator do
   let(:translator) {Translator.new}
@@ -8,7 +8,15 @@ RSpec.describe Translator do
   end
 
   it "has readable attributes" do
-    expect(translator.braille_equivalent.keys).to eq(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
+    expected_keys = ["a", "b", "c", "d", "e", "f", "g",
+                         "h", "i", "j", "k", "l", "m", "n",
+                         "o", "p", "q", "r", "s", "t", "u",
+                         "v", "w", "x", "y", "z", " "]
+
+    expect(translator.braille_equivalent.keys).to eq(expected_keys)
+  end
+
+  xit "can read the message in the file" do
   end
 
   it "can break given english string into characters" do
@@ -21,11 +29,18 @@ RSpec.describe Translator do
 
   end
   it "can translate the broken up english string to unformatted braille" do
-    expect(translator.translate_string_breakdown("hello")).to eq([["O.", "OO", ".."], ["O.", ".O", ".."], ["O.", "O.", "O."], ["O.", "O.", "O."], ["O.", ".O", "O."]])
+    expected_unformatted_braille = [["O.", "OO", ".."], ["O.", ".O", ".."],
+                                    ["O.", "O.", "O."], ["O.", "O.", "O."],
+                                    ["O.", ".O", "O."]]
+
+    expect(translator.translate_string_breakdown("hello")).to eq(expected_unformatted_braille)
   end
 
-  it "can format braille letters in three rows of two characters" do
-    expect(translator.format_braille_letters([["O.", "OO", ".."], ["O.", ".O", ".."], ["O.", "O.", "O."], ["O.", "O.", "O."], ["O.", ".O", "O."]])).to eq("O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.\n")
+  it "can format braille letters into printable braille in three rows of two characters" do
+      unformatted_braille = [["O.", "OO", ".."], ["O.", ".O", ".."],
+                             ["O.", "O.", "O."], ["O.", "O.", "O."],
+                             ["O.", ".O", "O."]]
+    expect(translator.format_braille_letters(unformatted_braille)).to eq("O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.\n")
   end
 
   it "can split messages over 40 braille characters onto multiple lines" do
@@ -38,5 +53,6 @@ RSpec.describe Translator do
                                      "OOOO\n" +
                                      "....\n")
   end
+
 
 end
