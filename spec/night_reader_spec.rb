@@ -1,4 +1,4 @@
-require './night_reader'
+require './lib/night_reader'
 
 RSpec.describe NightReader do
   let(:nightreader) {NightReader.new}

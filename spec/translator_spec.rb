@@ -16,9 +16,6 @@ RSpec.describe Translator do
     expect(translator.braille_equivalent.keys).to eq(expected_keys)
   end
 
-  xit "can read the message in the file" do
-  end
-
   it "can break given english string into characters" do
     expect(translator.breakdown_message("hello")).to eq(["h", "e", "l", "l", "o"])
   end
