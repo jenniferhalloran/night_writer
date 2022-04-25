@@ -10,11 +10,11 @@ class NightWriter
     @translator = Translator.new
   end
 
-  def read_and_write_to_file(read_file_name = read_file, write_file_name = write_file)
+  def read_and_write_to_file(read_file_name = @read_file, write_file_name = @write_file)
     english_string = File.read(read_file_name)
     braille_message = @translator.english_to_braille(english_string)
     File.write(write_file_name, braille_message)
-    puts "Created '#{write_file_name}' containing #{braille_message.size} characters"
+    puts "Created '#{write_file_name}' containing #{english_string.size} characters"
   end
 
 end
