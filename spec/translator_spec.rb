@@ -65,4 +65,13 @@ RSpec.describe Translator do
     expect(translator.format_braille_for_translation(unformatted_braille)).to eq(expected_braille_letters)
   end
 
+  it "can translate braille letters back to english " do
+    braille_letters = [[["O.", "OO", ".."],
+                        ["O.", ".O", ".."],
+                        ["O.", "O.", "O."],
+                        ["O.", "O.", "O."],
+                        ["O.", ".O", "O."]]]
+    expect(translator.translate_braille_letters(braille_letters)).to eq([["h", "e", "l", "l", "o"]])
+  end
+
 end
