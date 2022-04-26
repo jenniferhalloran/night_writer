@@ -3,6 +3,7 @@ require './lib/translator.rb'
 RSpec.describe Translator do
   let(:translator) {Translator.new}
 
+
   it "exists" do
     expect(translator).to be_a(Translator)
   end
@@ -21,8 +22,8 @@ RSpec.describe Translator do
   end
 
   it "can translate an individual character" do
-    expect(translator.translate_to_braille("h")).to eq(["O.", "OO", ".."])
-    expect(translator.translate_to_braille(" ")).to eq(["..", "..", ".."])
+    expect(translator.translate_letter("h", translator.braille_equivalent)).to eq(["O.", "OO", ".."])
+    expect(translator.translate_letter(" ", translator.braille_equivalent)).to eq(["..", "..", ".."])
 
   end
   it "can translate the broken up english string to unformatted braille" do
