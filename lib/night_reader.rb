@@ -13,7 +13,6 @@ class NightReader
     @write_file = ARGV[1]
     @braille_translator = BrailleTranslator.new
   end
-
 end
 
 night_reader = NightReader.new

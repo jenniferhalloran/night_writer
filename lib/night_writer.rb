@@ -13,16 +13,11 @@ class NightWriter
     @write_file = ARGV[1]
     @english_translator = EnglishTranslator.new
   end
-
 end
 
 night_writer = NightWriter.new
 
 night_writer.read_file = './message.txt' if night_writer.read_file == "spec/night_writer_spec.rb" || night_writer.read_file.nil?
-##create a file and write a default message
 night_writer.write_file = './braille.txt' if night_writer.write_file.nil?
 
 night_writer.read_and_write_to_file(night_writer.read_file, night_writer.write_file, night_writer.english_translator)
-
-
-##dependencey injection

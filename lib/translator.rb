@@ -1,9 +1,5 @@
 class Translator
 
-#   def initialize
-    # can I not make braille_translations an attribute to be accessed?
-#   end
-
   def braille_translations
     {
       "a" => ["O.", "..", ".."],
