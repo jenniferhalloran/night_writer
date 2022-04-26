@@ -1,8 +1,11 @@
 class Translator
-  attr_reader :braille_equivalent
 
-  def initialize
-    @braille_equivalent = {
+#   def initialize
+    # can I not make braille_translations an attribute to be accessed?
+#   end
+
+  def braille_translations
+    {
       "a" => ["O.", "..", ".."],
       "b" => ["O.", "O.", ".."],
       "c" => ["OO", "..", ".."],
@@ -31,67 +34,14 @@ class Translator
       "z" => ["O.", ".O", "OO"],
       " " => ["..", "..", ".."]
     }
-    @english_equivalent = @braille_equivalent.invert
-    @braille_message = []
   end
 
-  def english_to_braille(english_string)
-    braille_letters = translate_string_breakdown(english_string)
-    format_braille_letters(braille_letters)
+  def translate_letter(letter, dictionary)
+    dictionary[letter]
   end
 
-  def translate_string_breakdown(english_string)
-    message_characters = breakdown_message(english_string)
-    message_characters.map { |english_letter| translate_to_braille(english_letter) }
-  end
-
-  def breakdown_message(english_string)
-    english_string.chomp.chars
-  end
-
-  def translate_to_braille(english_letter)
-    @braille_equivalent[english_letter]
-  end
-
-  def format_braille_letters(braille_letters)
-    braille_lines = braille_letters.transpose
-    create_line_breaks(braille_lines)
-    @braille_message.flatten.join
-  end
-
-  def create_line_breaks(braille_lines)
-    index = 0
-    (braille_lines[0].count.to_f / 40).ceil.times do
-      braille_lines.each do |line|
-        @braille_message << line[index..index + 39]
-        @braille_message << "\n"
-      end
-      index += 40
-    end
-  end
-
-## BRAILLE TO ENGLISH
-  def braille_to_english(braille_message)
-    braille_letters = format_braille_for_translation(braille_message)
-    english_array = translate_braille_letters(braille_letters)
-    english_array.join
-  end
-
-  def translate_braille_string(braille_letters)
-    braille_letters.map { |braille_letter| translate_to_english(braille_letter) }
-  end
-
-  def translate_to_english(braille_letter)
-    @english_equivalent[braille_letter]
-  end
-
-  def format_braille_for_translation(braille_message)
-    braille_arrays = braille_message.split("\n").map {|line| line.scan(/../)}.each_slice(3)
-    braille_arrays.map{|array| array.transpose}
-  end
-
-  def translate_braille_letters(braille_letters)
-    braille_letters.map { |letter_array| translate_braille_string(letter_array) }
+  def translate_message(message, dictionary)
+    message.map {|letter| translate_letter(letter, dictionary)}
   end
 
 end
