@@ -6,7 +6,7 @@ class EnglishTranslator < Translator
     @braille_message = []
   end
 
-  def english_to_braille(english_string)
+  def translate(english_string)
     english_characters = breakdown_message(english_string)
     braille_letters = translate_message(english_characters, braille_translations)
     format_braille_letters(braille_letters)

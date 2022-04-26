@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require "./lib/braille_translator.rb"
 
 RSpec.describe BrailleTranslator do
@@ -30,6 +33,6 @@ RSpec.describe BrailleTranslator do
   it "can create a printable english message from braille" do
     unformatted_braille = "O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.\n"
 
-    expect(braille_translator.braille_to_english(unformatted_braille)).to eq("hello")
+    expect(braille_translator.translate(unformatted_braille)).to eq("hello")
   end
 end

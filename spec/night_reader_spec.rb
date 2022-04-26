@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require './lib/night_reader'
 
 RSpec.describe NightReader do
