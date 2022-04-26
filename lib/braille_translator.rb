@@ -7,7 +7,7 @@ class BrailleTranslator < Translator
     @english_translations = braille_translations.invert
   end
 
-  def braille_to_english(braille_message)
+  def translate(braille_message)
     braille_letters = format_braille_for_translation(braille_message)
     english_array = translate_braille_letters(braille_letters)
     english_array.join

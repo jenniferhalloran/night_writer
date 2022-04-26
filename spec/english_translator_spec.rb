@@ -44,7 +44,7 @@ RSpec.describe EnglishTranslator do
   end
 
   it "can split messages over 40 braille characters onto multiple lines" do
-    printable_braille = english_translator.english_to_braille("hello this is going to be just long enough")
+    printable_braille = english_translator.translate("hello this is going to be just long enough")
     expect(printable_braille).to eq("O.O.O.O.O....OO..O.O...O.O..OOO..OOOOO...OO...O.O....OO..O.O..O.O.OOOO..O.OOO.O.\n" +
                                      "OO.OO.O..O..OOOOO.O...O.O...OO.OO..OOO..OO.O..O..O..OO..O.OO..O..O.OOO...O.O.O..\n" +
                                      "....O.O.O...O.....O.....O.....O...O.....O.O...........OOO.O...O.O.O.......O.O.OO\n" +
