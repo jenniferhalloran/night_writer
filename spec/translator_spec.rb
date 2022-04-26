@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require './lib/translator.rb'
 
 RSpec.describe Translator do
