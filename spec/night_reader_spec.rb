@@ -15,9 +15,4 @@ RSpec.describe NightReader do
 
     expect(File.read("./original_message.txt")).to eq("hello")
   end
-
-  it "can write the corresponding message to the terminal" do
-    expect{night_reader.read_and_write_to_file('./braille.txt', './original_message.txt', night_reader.braille_translator)}.to output("Created './original_message.txt' containing 33 characters\n").to_stdout
-  end
-
 end
