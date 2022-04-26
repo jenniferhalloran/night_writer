@@ -12,9 +12,9 @@ RSpec.describe EnglishTranslator do
 
   it "can access the translations" do
     expected_keys = ["a", "b", "c", "d", "e", "f", "g",
-                         "h", "i", "j", "k", "l", "m", "n",
-                         "o", "p", "q", "r", "s", "t", "u",
-                         "v", "w", "x", "y", "z", " "]
+                     "h", "i", "j", "k", "l", "m", "n",
+                     "o", "p", "q", "r", "s", "t", "u",
+                     "v", "w", "x", "y", "z", " "]
 
     expect(english_translator.braille_translations.keys).to eq(expected_keys)
   end
@@ -26,8 +26,8 @@ RSpec.describe EnglishTranslator do
   it "can translate an individual character" do
     expect(english_translator.translate_letter("h", english_translator.braille_translations)).to eq(["O.", "OO", ".."])
     expect(english_translator.translate_letter(" ", english_translator.braille_translations)).to eq(["..", "..", ".."])
-
   end
+
   it "can translate the broken up english string to unformatted braille" do
     expected_unformatted_braille = [["O.", "OO", ".."], ["O.", ".O", ".."],
                                     ["O.", "O.", "O."], ["O.", "O.", "O."],

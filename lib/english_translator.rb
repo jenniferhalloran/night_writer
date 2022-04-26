@@ -32,5 +32,4 @@ class EnglishTranslator < Translator
       index += 40
     end
   end
-
 end

@@ -21,5 +21,4 @@ class BrailleTranslator < Translator
   def translate_braille_letters(braille_letters)
     braille_letters.map { |braille_letter| translate_message(braille_letter, @english_translations) }
   end
-
 end
