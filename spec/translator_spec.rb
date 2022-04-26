@@ -31,7 +31,7 @@ RSpec.describe Translator do
                                     ["O.", "O.", "O."], ["O.", "O.", "O."],
                                     ["O.", ".O", "O."]]
 
-    expect(translator.translate_string_breakdown("hello")).to eq(expected_unformatted_braille)
+    expect(translator.translate_message(["h", "e", "l", "l", "o"], translator.braille_equivalent)).to eq(expected_unformatted_braille)
   end
 
   it "can format braille letters into printable braille in three rows of two characters" do
@@ -42,8 +42,7 @@ RSpec.describe Translator do
   end
 
   it "can split messages over 40 braille characters onto multiple lines" do
-    braille_letters = translator.translate_string_breakdown("hello this is going to be just long enough")
-    printable_braille = translator.format_braille_letters(braille_letters)
+    printable_braille = translator.english_to_braille("hello this is going to be just long enough")
     expect(printable_braille).to eq("O.O.O.O.O....OO..O.O...O.O..OOO..OOOOO...OO...O.O....OO..O.O..O.O.OOOO..O.OOO.O.\n" +
                                      "OO.OO.O..O..OOOOO.O...O.O...OO.OO..OOO..OO.O..O..O..OO..O.OO..O..O.OOO...O.O.O..\n" +
                                      "....O.O.O...O.....O.....O.....O...O.....O.O...........OOO.O...O.O.O.......O.O.OO\n" +

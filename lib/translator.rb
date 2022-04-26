@@ -39,15 +39,15 @@ class Translator
     dictionary[letter]
   end
 
-######
-  def english_to_braille(english_string)
-    braille_letters = translate_string_breakdown(english_string)
-    format_braille_letters(braille_letters)
+  def translate_message(message, dictionary)
+    message.map {|letter| translate_letter(letter, dictionary)}
   end
 
-  def translate_string_breakdown(english_string)
-    message_characters = breakdown_message(english_string)
-    message_characters.map { |english_letter| translate_letter(english_letter, @braille_equivalent) }
+######
+  def english_to_braille(english_string)
+    english_characters = breakdown_message(english_string)
+    braille_letters = translate_message(english_characters, @braille_equivalent)
+    format_braille_letters(braille_letters)
   end
 
   def breakdown_message(english_string)
@@ -71,19 +71,11 @@ class Translator
     end
   end
 
-  def translate_letter(letter, dictionary)
-    dictionary[letter]
-  end
-
 ## BRAILLE TO ENGLISH
   def braille_to_english(braille_message)
     braille_letters = format_braille_for_translation(braille_message)
     english_array = translate_braille_letters(braille_letters)
     english_array.join
-  end
-
-  def translate_braille_string(braille_letters)
-    braille_letters.map { |braille_letter| translate_letter(braille_letter, @english_equivalent) }
   end
 
   def format_braille_for_translation(braille_message)
@@ -92,7 +84,7 @@ class Translator
   end
 
   def translate_braille_letters(braille_letters)
-    braille_letters.map { |letter_array| translate_braille_string(letter_array) }
+    braille_letters.map { |braille_letter| translate_message(braille_letter, @english_equivalent) }
   end
 
 end
