@@ -1,6 +1,6 @@
 require "./lib/english_translator.rb"
 
-RSpec.describe Translator do
+RSpec.describe EnglishTranslator do
   let(:english_translator) {EnglishTranslator.new}
 
   it "exists" do
