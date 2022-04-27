@@ -10,8 +10,8 @@ RSpec.describe NightWriter do
   end
 
   it "can write the message to a new file" do
-    allow_any_instance_of(File).to receive(:read).and_return("O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.\n")
-    
+    allow(File).to receive(:read).and_return("O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.\n")
+
     expect(File.read("./braille.txt")).to eq("O.O.O.O.O.\nOO.OO.O..O\n....O.O.O.\n")
   end
 
